@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="John Doe">
+    
+    
+    
+    
+    
+    
+    <title>Notes On Creating A Hexo Theme | Welcome</title>
+    <!-- inject:style -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-- endinject -->
+    <style>
+        .cube-loading {
+            top: 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('/images/lg/loading.gif') no-repeat center center;
+            background-color: rgba(0,0,0,.7);
+        }
+
+        .cube-loading.out {
+            display: none;
+        }
+
+        .cube-loading:before {
+            display: block;
+            content: 'Loading';
+            position: relative;
+            width: 100%;
+            top: 50%;
+            right: -50%;
+            color: #fff;
+        }
+
+        @media(max-width: 768px) {
+            .cube-loading:before {
+                font-size: 1.2em;
+                transform: translate(-24px,20px);
+                -webkit-transform: translate(-24px,20px);
+                -o-transform: translate(-24px,20px);
+                -ms-transform: translate(-24px,20px);
+            }
+        }
+
+        @media(min-width: 768px) {
+            .cube-loading:before {
+
+            }
+        }
+    </style>
+    
+</head>
+<body>
+<div class="cube-body">
+    <nav id="cube-top-memu" class="cube-menu">
+    <ul class="cube-menu-collapse">
+        
+        <li>
+            <i class="cube-icon cube-icon-home" aria-hidden="true"></i>
+            <a href="/">首页</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-archive" aria-hidden="true"></i>
+            <a href="/archives">文章</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-categories" aria-hidden="true"></i>
+            <a href="/categories">分类</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-tags" aria-hidden="true"></i>
+            <a href="/tags">标签</a>
+        </li>
+        
+        <li>
+            <i class="cube-icon cube-icon-about" aria-hidden="true"></i>
+            <a href="/about-me">关于我</a>
+        </li>
+        
+    </ul>
+</nav>
+<nav class="cube-side-menu" id="cube-side-menu">
+    <ul class="cube-menu-list">
+        
+        <li>
+            <a class="lrc-control">Open Lyrics</a>
+        </li>
+        
+        <li>
+            <a class="scroll-to-top">Top</a>
+        </li>
+    </ul>
+</nav>
+    <header class="cube-header" id="cube-header">
+    <img src=" /images/background.png " alt="头部背景图片">
+    
+    <div class="cube-type">
+        <span class="cube-typed-title">“有钱，一起赚”——网赚联盟</span>
+        <span class="cube-typed-cursor">|</span>
+    </div>
+    
+</header>
+
+    <style>
+        nav.cube-menu:before {
+            content: '';
+            visibility: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 44px;
+        
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+        
+            z-index: -1;
+            background-image: url('https://wallpapers.wallhalla.com/K1LOG8mIl56_E1IKm95_2fcce76a/aHR0cHM6Ly93YWxsLmFscGhhY29kZXJzLmNvbS9iaWcucGhwP2k9NjEyNTMw');
+            background-repeat: no-repeat;
+            background-position: center -356px;
+            background-size: cover;
+            background-color: transparent;
+        }
+
+        header.cube-background.cube-header-background {
+            visibility: hidden;
+            background-image: url('https://wallpapers.wallhalla.com/K1LOG8mIl56_E1IKm95_2fcce76a/aHR0cHM6Ly93YWxsLmFscGhhY29kZXJzLmNvbS9iaWcucGhwP2k9NjEyNTMw');
+            background-position: center -400px;
+        }
+    </style>
+    <header class="cube-background cube-header-background">
+        
+        <div class="cube-type">
+            <span class="cube-typed-title">“有钱，一起赚”——网赚联盟</span>
+            <span class="cube-typed-cursor">|</span>
+        </div>
+        
+    </header>
+    <div class="load-header-background"></div>
+    <script>
+        (function (window) {
+
+            window.headerModule = {}
+            window.headerModule.image = {
+                width: '2000',
+                height: '800'
+            }
+
+        })(window)
+    </script>
+    
+    <div class="cube-content">
+        <div class="cube-left">
+            <div class="cube-article">
+    <h1 class="title">Notes On Creating A Hexo Theme</h1>
+    
+    <div class="cube-article-header">
+        <div class="cube-article-date">
+            <i class="cube-icon cube-icon-date" aria-hidden="true"></i>
+            <!-- moment.js对象 -->
+            2016-01-02
+        </div>
+        <div class="cube-article-tags">
+    <i class="cube-icon cube-icon-tag" aria-hidden="true"></i>
+    
+    <a href="/tags/Programming/">#Programming</a>
+    
+    <a href="/tags/Design/">#Design</a>
+    
+</div>
+    </div>
+    
+    <div class="cube-article-content cube-markdown">
+        
+        <div class="image-strip"><br><img src="https://s3.amazonaws.com/ptsteadman-images/hexo.png"><br></div>
+
+<h2 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h2><p>To Update NPM: <code>npm install npm@latest -g</code>.</p>
+<p>In 2015 it makes sense to use NVM.  <a href="http://linoxide.com/ubuntu-how-to/install-node-js-ubuntu" target="_blank" rel="noopener">NVM Installation<br>Instructions</a>.</p>
+<p>Update NPM: <code>npm install npm@latest -g</code></p>
+<p>Hexo: why can’t you use helper functions in source code?<br>This should be in docs.</p>
+<h2 id="Creating-a-Custom-Index-File-in-Hexo"><a href="#Creating-a-Custom-Index-File-in-Hexo" class="headerlink" title="Creating a Custom Index File in Hexo"></a>Creating a Custom Index File in Hexo</h2><p>Trying to generate a custom index file in source, hexo would ignore<br><code>source/index.md</code> no matter what I did.  What I had to do was uninstall<br><code>hexo-generator-index</code>.  <a href="https://github.com/hexojs/hexo/issues/1077" target="_blank" rel="noopener">See<br>here</a>.  Then it works.  So, that<br>will be part of the setup for my theme.  But, it’s worth it in order to properly<br>seperate the theme from the content, I think.  Having everyone edit the theme<br>index.ejs template is no good.</p>
+<h2 id="Hexo-Rendering-Raw-EJS-File-Problem-I-Encountered"><a href="#Hexo-Rendering-Raw-EJS-File-Problem-I-Encountered" class="headerlink" title="Hexo Rendering Raw EJS File Problem I Encountered"></a>Hexo Rendering Raw EJS File Problem I Encountered</h2><p>Sometimes the server would keep rendering an old version of my code, but as<br>text.  So I’d see stuff like</p>
+<pre><code>&lt;% if (site.tags.length){ %&gt;
+</code></pre><p>The raw ejs, essentially.  Restarting the server or running <code>hexo clean</code> didn’t<br>do anything.</p>
+<p>After some time, I realized it was due to the gedit swap files being read by<br>hexo as the actual layout files: for example, <code>tag.ejs~</code>.  My <code>partial</code> helpers<br>looked like: <code>&lt;%- partial(&#39;_partials/tag&#39;) %&gt;</code>, and apparently hexo was reading<br>in <code>tag.ejs~</code> instead of <code>tag.ejs</code>.  And therefore, the ejs wasn’t rendering.</p>
+<p>To fix this, I simply changed my partial helper to <code>&lt;%-
+partial(&#39;_partials/tag.ejs&#39;) %&gt;</code>.  Problem solved.</p>
+<h2 id="Hexo-Excerpt-Variable"><a href="#Hexo-Excerpt-Variable" class="headerlink" title="Hexo Excerpt Variable"></a>Hexo Excerpt Variable</h2><p>I was confused by the behavior of the hexo <code>excerpt</code> variable.  If you define<br><code>excerpt: something</code> in the front matter, hexo ignores that.  Instead, to get it<br>to work, one needs to add a <code>&lt;!-- more --&gt;</code> comment in the source of the post.<br>Or, you can install a plugin that allows you to define custom excerpt in the<br>front matter.</p>
+<h2 id="Scripts-Directory"><a href="#Scripts-Directory" class="headerlink" title="Scripts Directory"></a>Scripts Directory</h2><p>One of the things I really discovered too late is the “Scripts” directory in the<br>theme folder.  In Hexo, the various plugins drive the structure of the site, as<br>opposed to the placement of different files and directories, as in Jekyll.  The<br>plugins programatically create folder structure, etc, where in Jekyll I mostly<br>used the liquid markup to structure the site.  </p>
+<p>The problem is, then, that the user wants to extend hexo to do some sort of<br>custom thing.  If one had to publish a new plugin, that’d be too much work.  But<br>the theme level scripts folder allows one to extend the base hexo functionality<br>in ‘user space’ effectively.</p>
+
+    </div>
+</div>
+
+<div class="cube-article-nav">
+    <ul>
+        
+        <li class="prev">
+            <a href="/2018/04/27/hello-world/">
+                <i class="cube-icon cube-prev" aria-hidden="true"></i>
+                Hello World
+            </a>
+        </li>
+        
+        
+        <li class="next">
+            <a href="/2015/05/02/2015-05-02-How-To-Impress/">
+                How To Impress Employers at Infosessions
+                <i class="cube-icon cube-next" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!-- TODO 根据theme.comment的内容进行入口选择 -->
+
+
+
+        </div>
+        <div class="cube-right">
+            
+
+<div class="cube-search cube-sidebar" id="cube-search">
+    <div class="search-container">
+        <input type="text" placeholder="Search" class="cube-search-input" id="cube-search-input">
+        <i class="cube-icon cube-icon-search cube-search-submit" aria-hidden="true"></i>
+    </div>
+    <!-- TODO 通过给window赋一个全局变量，通过脚本赋值 -->
+</div>
+<script>
+    (function (window) {
+        'use strict';
+        window.searchModule = {}
+        window.searchModule.JSONUrl = '/content.json'
+        window.searchModule.rootUrl = '/'
+    })(window)
+</script>
+<div class="cube-search-form">
+    <div class="cube-search-control">
+        <input type="text" placeholder="Search" class="search-input">
+        <a class="close-button">
+            <i class="cube-icon cube-close" aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="cube-search-result"></div>
+</div>
+
+
+
+<div class="cube-links cube-sidebar" id="cube-links">
+    <div class="title">
+        <a>Links</a>
+    </div>
+    <ul class="list">
+        
+        <li>
+            
+            
+            <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=679896894,3877851527&amp;fm=179&amp;w=56&amp;h=56&amp;img.PNG">
+            
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3537472153&amp;site=qq&amp;menu=yes" target="_blank">QQ 3537472153</a>
+        </li>
+        
+        <li>
+            
+            
+            <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=679896894,3877851527&amp;fm=179&amp;w=56&amp;h=56&amp;img.PNG">
+            
+            <a href="" target="_blank">QQ群</a>
+        </li>
+        
+    </ul>
+</div>
+
+
+<div class="cube-author cube-sidebar" id="cube-author">
+    
+    
+    <span>John Doe</span>
+    
+    
+    <div class="count">
+        <a class="count articles"><span>8</span>Article</a>
+        <a class="count tags"><span>11</span>Tags</a>
+        <a class="count categories"><span>5</span>Categories</a>
+    </div>
+</div>
+
+
+
+
+
+<div class="cube-recent-posts cube-sidebar" id="cube-recent-posts">
+    <div class="title">
+        <a>Recent Posts</a>
+    </div>
+    <ul class="list">
+        
+        
+        <li>
+            <!-- TODO 如果文章要显示图片，那么在front-matter上添加preview属性(url or path) -->
+            
+            <div class="normal">
+                <p class="index first">
+                    <span>1</span>
+                </p>
+                <p class="title">
+                    <a href="/2018/04/27/hello-world/" title="Hello World">Hello World</a>
+                </p>
+            </div>
+            
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>2</span>
+                </p>
+                <p class="title">
+                    <a href="/2016/01/02/2016-01-02-Notes-On-Creating-A-Hexo-Theme/" title="Notes On Creating A Hexo Theme">Notes On Creating A Hexo Theme</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>3</span>
+                </p>
+                <p class="title">
+                    <a href="/2015/05/02/2015-05-02-How-To-Impress/" title="How To Impress Employers at Infosessions">How To Impress Employers at Infosessions</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>4</span>
+                </p>
+                <p class="title">
+                    <a href="/2015/04/08/2015-04-08-NAV-Programming-Resources/" title="NAV Web Service Programming Resources">NAV Web Service Programming Resources</a>
+                </p>
+            </div>
+        </li>
+        
+        
+        
+        <li>
+            <div class="normal">
+                <p class="index">
+                    <span>5</span>
+                </p>
+                <p class="title">
+                    <a href="/2015/04/05/2015-04-05-Lookup-on-Page/" title="Adding Lookup Field to a Page in Dynamics NAV">Adding Lookup Field to a Page in Dynamics NAV</a>
+                </p>
+            </div>
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+
+<div class="cube-categories cube-sidebar" id="cube-categories">
+    <div class="title">
+        <a href="/categories">Categories</a>
+    </div>
+    <div class="cube-boxs">
+        
+        
+        <div class="cube-box ">
+            <a href="/categories/Hexo/">#Hexo</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/categories/NET/">#.NET</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/categories/NGINX/">#NGINX</a>
+        </div>
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/categories/Dynamics-NAV/">#Dynamics NAV</a>
+        </div>
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/categories/Humor/">#Humor</a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="cube-tagcloud cube-sidebar" id="cube-tagcloud">
+    <div class="title">
+        <a href="/tags">Tagcloud</a>
+    </div>
+    <div class="cube-boxs">
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/tags/Welcome/">#Welcome</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/How-To/">#How-To</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/C/">#C#</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/Visual-Studio/">#Visual Studio</a>
+        </div>
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/tags/Web-Development/">#Web Development</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/Resources/">#Resources</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/NAV/">#NAV</a>
+        </div>
+        
+        
+        <div class="cube-box-bg ">
+            <a href="/tags/funny/">#funny</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/employment/">#employment</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/Programming/">#Programming</a>
+        </div>
+        
+        
+        <div class="cube-box ">
+            <a href="/tags/Design/">#Design</a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<footer class="cube-footer">
+    
+© 2017 John Doe
+
+<br>
+Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+</footer>
+<!-- inject:script -->
+<script src="/js/script.js"></script>
+<!-- endinject -->
+<div class="cube-loading out"></div>
+</body>
+</html>
